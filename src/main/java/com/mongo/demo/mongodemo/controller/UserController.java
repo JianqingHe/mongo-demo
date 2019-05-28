@@ -2,8 +2,8 @@ package com.mongo.demo.mongodemo.controller;
 
 import com.mongo.demo.mongodemo.core.PageInfo;
 import com.mongo.demo.mongodemo.core.ResultMap;
-import com.mongo.demo.mongodemo.dao.UserDao;
 import com.mongo.demo.mongodemo.entity.UserEntity;
+import com.mongo.demo.mongodemo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.web.PageableDefault;
@@ -22,8 +22,12 @@ import java.util.List;
 @Slf4j
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserDao userDao;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     /**
      * 添加用户信息
@@ -34,7 +38,7 @@ public class UserController {
     @PostMapping("/addUser")
     public ResultMap saveUser(@RequestBody UserEntity userEntity) {
         log.debug("单个添加用户 {}", userEntity);
-        userDao.saveUser(userEntity);
+        userService.saveUser(userEntity);
         return ResultMap.success();
     }
 
@@ -47,7 +51,7 @@ public class UserController {
     @PostMapping("/batchInsert")
     public ResultMap batchInsert(@RequestBody List<UserEntity> userList) {
         log.debug("批量添加用户 {}", userList);
-        userDao.batchInsert(userList);
+        userService.batchInsert(userList);
         return ResultMap.success();
     }
 
@@ -60,7 +64,7 @@ public class UserController {
     @GetMapping("/findByName")
     public ResultMap findByName(String name) {
         log.debug("通过姓名查询用户 keyword->{}", name);
-        UserEntity user = userDao.findByName(name);
+        UserEntity user = userService.findByName(name);
         return ResultMap.success(user);
     }
 
@@ -73,7 +77,7 @@ public class UserController {
     @PostMapping("/update")
     public ResultMap updateUser(@RequestBody UserEntity userEntity) {
         log.debug("更新用户信息 {}", userEntity);
-        userDao.updateUser(userEntity);
+        userService.updateUser(userEntity);
         return ResultMap.success();
     }
 
@@ -86,7 +90,7 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public ResultMap deleteById(@PathVariable("id") Long userId) {
         log.debug("通过id删除用户 id->{}", userId);
-        userDao.deleteById(userId);
+        userService.deleteById(userId);
         return ResultMap.success();
     }
 
@@ -99,7 +103,7 @@ public class UserController {
     @GetMapping("/page")
     public ResultMap findByPageInfo(@PageableDefault PageInfo page) {
         log.debug("分页查询用户 {}", page);
-        PageInfo<UserEntity> pageInfo = userDao.findByPageInfo(page);
+        PageInfo<UserEntity> pageInfo = userService.findByPageInfo(page);
         return ResultMap.success(pageInfo);
     }
 }
