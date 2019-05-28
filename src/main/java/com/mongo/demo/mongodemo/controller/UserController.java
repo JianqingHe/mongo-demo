@@ -1,10 +1,14 @@
 package com.mongo.demo.mongodemo.controller;
 
+import com.mongo.demo.mongodemo.core.PageInfo;
 import com.mongo.demo.mongodemo.core.ResultMap;
 import com.mongo.demo.mongodemo.dao.UserDao;
 import com.mongo.demo.mongodemo.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 用户接口
@@ -28,6 +32,18 @@ public class UserController {
     @PostMapping("/addUser")
     public ResultMap saveUser(@RequestBody UserEntity userEntity) {
         userDao.saveUser(userEntity);
+        return ResultMap.success();
+    }
+
+    /**
+     * 添加用户信息
+     *
+     * @param userList 用户信息
+     * @return 操作结果
+     */
+    @PostMapping("/batchInsert")
+    public ResultMap batchInsert(@RequestBody List<UserEntity> userList) {
+        userDao.batchInsert(userList);
         return ResultMap.success();
     }
 
@@ -65,5 +81,17 @@ public class UserController {
     public ResultMap deleteById(@PathVariable("id") Long userId) {
         userDao.deleteById(userId);
         return ResultMap.success();
+    }
+
+    /**
+     * 分页查询用户信息
+     *
+     * @param page
+     * @return
+     */
+    @GetMapping("/page")
+    public ResultMap findByPageInfo(@PageableDefault PageInfo page) {
+        PageInfo<UserEntity> pageInfo = userDao.findByPageInfo(page);
+        return ResultMap.success(pageInfo);
     }
 }
