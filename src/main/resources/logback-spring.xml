@@ -4,7 +4,7 @@
     <property name="mongo-demo" value="bq_interface" />
 
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="/home/logs" value="/opt/logs/bq_interface" />
+    <property name="/home/logs" value="/opt/logs/mg" />
 
     <!-- 控制台输出 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
