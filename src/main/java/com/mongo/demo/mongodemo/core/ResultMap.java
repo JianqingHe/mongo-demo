@@ -85,7 +85,7 @@ public class ResultMap<T> implements Serializable {
      * @return
      */
     public static ResultMap success(Object data) {
-        ResultMap resultMap = new ResultMap<>();
+        ResultMap<Object> resultMap = new ResultMap<>();
         resultMap.setData(data);
         return resultMap;
     }
