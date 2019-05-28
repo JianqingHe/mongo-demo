@@ -17,31 +17,42 @@ public class PageInfo<T> {
 
     int value = 10;
 
+    /**
+     * 分页大小
+     */
     int size = 10;
 
+    /**
+     * 页码
+     */
     int page = 0;
 
+    /**
+     * 排序字段
+     */
     String[] sorts = {};
 
+    /**
+     * 排序规则
+     */
     Sort.Direction direction = Sort.Direction.ASC;
 
+    /**
+     * 数据集合
+     */
     List<T> data = new ArrayList<>();
 
+    /**
+     * 搜索关键字
+     */
     String keyword;
 
-    Sort orders;
-
+    /**
+     * 总数
+     */
     long total = 0;
 
     public Sort getOrders() {
-        List<Sort.Order> orders = new ArrayList<>();
-        int length = sorts.length;
-        if (length > 0) {
-            for (int i = 0; i < length; i++) {
-                Sort.Order order = new Sort.Order(direction, sorts[i]);
-                orders.add(order);
-            }
-        }
-        return new Sort(orders);
+        return new Sort(direction, sorts);
     }
 }
