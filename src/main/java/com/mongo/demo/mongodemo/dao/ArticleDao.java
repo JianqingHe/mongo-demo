@@ -1,10 +1,7 @@
 package com.mongo.demo.mongodemo.dao;
 
-import com.mongo.demo.mongodemo.core.PageInfo;
 import com.mongo.demo.mongodemo.entity.Article;
-import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
