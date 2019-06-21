@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
-    <!-- 项目名称 -->
-    <property name="mongo-demo" value="bq_interface" />
 
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="/home/logs" value="/opt/logs/mg" />
+    <property name="log.path" value="/home/mg/logs" />
 
     <!-- 控制台输出 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -21,7 +19,7 @@
         <!-- 过滤器，只打印ERROR级别的日志 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>mongo-demo.system-dev.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${log.path}/%d{yyyy-MM-dd}.%i.log</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>15</MaxHistory>
             <!--日志文件最大的大小-->

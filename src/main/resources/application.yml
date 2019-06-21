@@ -1,6 +1,8 @@
-# mongodbÊı¾İ¿âÅäÖÃspring:
+# mongodbæ•°æ®åº“é…ç½®spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/test
+      uri: mongodb://182.254.187.132:27017/test
   logging:
     config: classpath:logback-spring.xml
+  server:
+    port: 9005
