@@ -50,7 +50,7 @@ public class ArticleController {
      * @return 操作结果
      */
     @PostMapping("/batchInsert")
-    public ResultMap bathcInsert(@RequestBody List<Article> articleList) {
+    public ResultMap batchInsert(@RequestBody List<Article> articleList) {
         log.debug("批量插入文章数据 {}", articleList);
         articleList = articleService.insert(articleList);
         return ResultMap.success(articleList);

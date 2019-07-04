@@ -13,11 +13,23 @@ import java.util.Date;
 @Data
 public class Article {
 
+    /**
+     * id
+     */
     private Integer id;
 
+    /**
+     * 标题
+     */
     private String title = "";
 
+    /**
+     * 内容
+     */
     private String content = "";
 
+    /**
+     * 创建时间
+     */
     private Date date = new Date(System.currentTimeMillis());
 }

@@ -11,9 +11,18 @@ import lombok.Data;
 @Data
 public class UserEntity {
 
+    /**
+     * id
+     */
     private Integer id;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 性别
+     */
     private String sex;
 }
